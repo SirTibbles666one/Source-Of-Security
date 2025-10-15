@@ -1,11 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
-  app.quit();
-}
-
 // --- SINGLE INSTANCE LOCK ---
 // This prevents multiple instances of the app from running.
 const gotTheLock = app.requestSingleInstanceLock();
@@ -46,12 +41,11 @@ function createWindow() {
       color: '#2d3748', // Corresponds to bg-gray-800
       symbolColor: '#e2e8f0', // Corresponds to text-gray-200
       height: 40
-    },
-    icon: path.join(__dirname, 'assets/icons/icon.ico') // Set the window icon
+    }
   });
 
-  // Load the index.html of the app.
-  mainWindow.loadFile('index.html');
+  // Load the index.html of the app using a robust path.
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools in development.
   // mainWindow.webContents.openDevTools();

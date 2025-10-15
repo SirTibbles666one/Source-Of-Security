@@ -4,58 +4,58 @@ This repository contains the source code for the Tibbles Source Of Security suit
 
 ## How to Create Your Windows `.exe` Installer
 
-It looks like the automated script wasn't working on your PC. Let's switch to a manual method that is much more reliable. Please follow these steps carefully.
+We've identified the final issue preventing your installer from being created. The build process requires administrator permissions to work correctly. Please follow these updated steps.
 
 ### Step 1: Install Node.js (One-Time Setup)
 
-Your computer needs Node.js to build the installer. If you don't already have it, please download and install the **"LTS" version** from the official website:
+If you haven't already, you must install Node.js to build the installer.
 
-- **[https://nodejs.org/](https://nodejs.org/)**
+1.  Go to the official website: **[https://nodejs.org/](https://nodejs.org/)**
+2.  Download and install the version labeled **"LTS"**.
+3.  During installation, use all the default settings.
+4.  After it finishes, **you must restart your computer**. This is a critical step.
 
-During installation, use the default settings. After installing, **you must restart your computer** for it to work correctly.
+### Step 2: Open Command Prompt as an Administrator
 
-### Step 2: Open Command Prompt in Your Project Folder
+This is the most important step to fix the error you were seeing.
 
-This is the most important step. We need to open a command window *inside* the folder where you have all the project files (`package.json`, `electron.js`, etc.).
+1.  Click the **Start Menu** button.
+2.  Type **`cmd`**.
+3.  In the search results, right-click on **"Command Prompt"** and select **"Run as administrator"**.
+4.  A black command window will open. Now, you must tell it to navigate to your project folder. Type `cd` followed by a space, and then the full path to your project folder.
 
-1.  Open the folder containing the project files in Windows File Explorer.
-2.  Click on the address bar at the top of the File Explorer window (the area that shows the folder path, like `C:\Users\YourName\Desktop\ProjectFolder`).
-3.  Delete all the text in the address bar, type **`cmd`**, and press **Enter**.
+    **Important:** If your folder path contains spaces, you **must** wrap the entire path in quotes (`"`).
 
-A black command window will appear. It is now "looking" at your project folder, which is exactly what we need.
+    For example, if your project is on your D: drive in a folder named "The Source Of Security", you would type:
+    ```
+    cd "D:\The Source Of Security"
+    ```
+    Press **Enter**. The command prompt should now show your project's path.
 
 ### Step 3: Install Tools and Build the App
 
-Now, type the following two commands into the black command window. Press **Enter** after each one.
+Now that you are in the administrator command prompt and in the correct folder, run the following two commands. Press **Enter** after each one.
 
-1.  First, install the necessary tools. This might take a few minutes depending on your internet speed. Type this and press Enter:
+1.  First, install the necessary tools. This may take a few minutes.
     ```
     npm install
     ```
 
-2.  Next, build the installer. This is the longest step and can take several minutes. Please be patient and let it finish. Type this and press Enter:
+2.  Next, build the installer. This can take several minutes. Please be patient and let it finish completely.
     ```
     npm run dist
     ```
-
-You will see a lot of text as it works. Wait until you can type again and the command prompt returns to a new line.
 
 ### Step 4: Find Your One-Click Installer
 
 Once the process is complete, you will find your new, simplified installer inside a folder named `dist`.
 
-This installer is now a **one-click installer**, making it extremely easy to use on Windows 11. Just double-click the setup file, and the application will be installed and launched for you automatically—no extra steps or questions asked!
+This installer is now a **one-click installer**. Just double-click the setup file, and the application will be installed and launched for you automatically.
 
 ### Troubleshooting
 
--   **`'npm' is not recognized as an internal or external command...`**
-    This means Node.js was not installed correctly or you didn't restart your computer after installing it. Please go back to Step 1, reinstall the **LTS version** from [nodejs.org](https://nodejs.org/), and **restart your PC** before trying Step 2 again.
+-   **`'npm' is not recognized...`**: Node.js was not installed correctly, or you did not restart your PC after installing it. Please reinstall the **LTS version** from [nodejs.org](https://nodejs.org/) and **restart your PC**.
 
--   **A JavaScript error appears saying `Cannot find module 'electron-squirrel-startup'`:**
-    This means a necessary package is missing. To fix this, simply re-run the `npm install` command from Step 3 in your project folder. This will download the missing piece. After it's done, you can run `npm run dist` again to create the installer.
+-   **`Cannot create symbolic link : A required privilege is not held by the client`**: This error means you did not run the command prompt as an administrator. Please close the command window and follow **Step 2** again very carefully.
 
--   **The build fails with `image ... has unknown format`:**
-    This means the application icon file (`assets/icons/icon.ico`) is corrupted or not in a valid `.ico` format. To fix this, the icon has been removed from the build configuration. The installer will now build successfully with a default icon. If you want a custom icon, you must create a correctly formatted `.ico` file and add the `icon` path back to the `package.json` file.
-
--   **The process fails with errors during `npm install`:**
-    This is often due to a poor internet connection. Please check your connection and try running `npm install` again.
+-   **`image ... has unknown format`**: The application icon file is corrupted. The icon has been removed from the build configuration to fix this. The installer will build successfully with a default icon.
