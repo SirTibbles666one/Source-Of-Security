@@ -1,0 +1,5 @@
+{
+  "name": "Windows 11 Security Suite",
+  "description": "A comprehensive security suite simulation for Windows 11, featuring mock antivirus with VirusTotal integration, a firewall manager, and endpoint USB protection with whitelisting and blacklisting capabilities.",
+  "requestFramePermissions": []
+}

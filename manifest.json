@@ -1,0 +1,51 @@
+{
+  "short_name": "Tibbles",
+  "name": "Tibbles Source Of Security",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay"],
+  "theme_color": "#1f2937",
+  "background_color": "#111827",
+  "description": "A comprehensive security suite simulation for Windows 11, installable on your device.",
+  "shortcuts": [
+    {
+      "name": "Run Antivirus Scan",
+      "short_name": "Scan",
+      "description": "Scan your computer for threats",
+      "url": "/?view=Antivirus",
+      "icons": [{ "src": "/assets/icons/scan-shortcut.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Boost Performance",
+      "short_name": "Boost",
+      "description": "Optimize your PC's performance",
+      "url": "/?view=Performance%20Optimizer",
+      "icons": [{ "src": "/assets/icons/performance-shortcut.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "View Firewall",
+      "short_name": "Firewall",
+      "description": "Check your network firewall rules",
+      "url": "/?view=Firewall",
+      "icons": [{ "src": "/assets/icons/firewall-shortcut.png", "sizes": "96x96" }]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "tibbles-source-of-security",
+  "version": "1.0.0",
+  "description": "Tibbles Source Of Security Suite",
+  "main": "electron.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "author": "Tibbles",
+  "devDependencies": {
+    "electron": "^29.1.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.tibbles.security",
+    "productName": "Tibbles Source Of Security",
+    "files": [
+      "**/*",
+      "!node_modules"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
