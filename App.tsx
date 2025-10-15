@@ -51,6 +51,12 @@ const App: React.FC = () => {
     const [generatedKeys, setGeneratedKeys] = useState<AccountKey[]>(initialGeneratedKeys);
     const [loggedInUser, setLoggedInUser] = useState<{ email: string; keyData: AccountKey } | null>(null);
 
+    // State for Security Score calculation
+    const [firewallEnabled, setFirewallEnabled] = useState(true);
+    const [ransomwareEnabled, setRansomwareEnabled] = useState(true);
+    const [updatesAvailableCount, setUpdatesAvailableCount] = useState(4);
+
+
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const view = params.get('view');
@@ -71,18 +77,18 @@ const App: React.FC = () => {
 
     const renderView = () => {
         switch (activeView) {
-            case 'Dashboard': return <Dashboard setActiveView={setActiveView} />;
+            case 'Dashboard': return <Dashboard setActiveView={setActiveView} firewallEnabled={firewallEnabled} ransomwareEnabled={ransomwareEnabled} updatesAvailableCount={updatesAvailableCount} />;
             case 'Antivirus': return <Antivirus />;
-            case 'Firewall': return <Firewall />;
+            case 'Firewall': return <Firewall firewallEnabled={firewallEnabled} setFirewallEnabled={setFirewallEnabled} />;
             case 'Web Protection': return <WebProtection />;
-            case 'Ransomware Protection': return <Ransomware />;
+            case 'Ransomware Protection': return <Ransomware ransomwareEnabled={ransomwareEnabled} setRansomwareEnabled={setRansomwareEnabled} />;
             case 'Endpoint Security': return <EndpointSecurity />;
             case 'Identity Protection': return <IdentityProtection />;
             case 'Privacy': return <Privacy />;
             case 'Performance Optimizer': return <PerformanceOptimizer isGamingMode={isGamingMode} setIsGamingMode={setIsGamingMode} />;
             case 'Network Scanner': return <NetworkScanner />;
             case 'Parental Controls': return <ParentalControls />;
-            case 'Software Updater': return <SoftwareUpdater />;
+            case 'Software Updater': return <SoftwareUpdater setUpdatesAvailableCount={setUpdatesAvailableCount} />;
             case 'File Shredder': return <FileShredder />;
             case 'Cloud Backup': return <CloudBackup />;
             case 'Mobile Security': return <MobileSecurity />;
@@ -96,7 +102,7 @@ const App: React.FC = () => {
             case 'Reports': return <SecurityReport />;
             case 'Settings': return <Settings generatedKeys={generatedKeys} loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />;
             case 'Admin Panel': return <AdminPanel generatedKeys={generatedKeys} setGeneratedKeys={setGeneratedKeys} />;
-            default: return <Dashboard setActiveView={setActiveView} />;
+            default: return <Dashboard setActiveView={setActiveView} firewallEnabled={firewallEnabled} ransomwareEnabled={ransomwareEnabled} updatesAvailableCount={updatesAvailableCount} />;
         }
     };
 

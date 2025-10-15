@@ -1,5 +1,4 @@
-
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { SoftwareUpdateInfo } from '../types';
 import { UpdaterIcon } from './icons/UpdaterIcon';
 import { CheckCircleIcon } from './icons/CheckCircleIcon';
@@ -18,7 +17,11 @@ const determineInitialStatus = (app: Omit<SoftwareUpdateInfo, 'status'>): Softwa
     status: app.currentVersion === app.latestVersion ? 'up_to_date' : 'available',
 });
 
-const SoftwareUpdater: React.FC = () => {
+interface SoftwareUpdaterProps {
+    setUpdatesAvailableCount: (count: number) => void;
+}
+
+const SoftwareUpdater: React.FC<SoftwareUpdaterProps> = ({ setUpdatesAvailableCount }) => {
     const [isScanning, setIsScanning] = useState(false);
     const [scanComplete, setScanComplete] = useState(false);
     const [apps, setApps] = useState<SoftwareUpdateInfo[]>([]);
@@ -26,13 +29,19 @@ const SoftwareUpdater: React.FC = () => {
     const updatesAvailableCount = useMemo(() => {
         return apps.filter(app => app.status === 'available').length;
     }, [apps]);
+    
+    useEffect(() => {
+        setUpdatesAvailableCount(updatesAvailableCount);
+    }, [updatesAvailableCount, setUpdatesAvailableCount]);
 
     const startScan = () => {
         setIsScanning(true);
         setScanComplete(false);
         setApps([]);
         setTimeout(() => {
-            setApps(initialApps.map(determineInitialStatus));
+            const scannedApps = initialApps.map(determineInitialStatus);
+            setApps(scannedApps);
+            setUpdatesAvailableCount(scannedApps.filter(app => app.status === 'available').length);
             setIsScanning(false);
             setScanComplete(true);
         }, 2500);

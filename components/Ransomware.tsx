@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ProtectedFolder, RansomwareEvent } from '../types';
 import { RansomwareIcon } from './icons/RansomwareIcon';
@@ -24,9 +23,12 @@ const ToggleSwitch: React.FC<{ enabled: boolean; onChange: (enabled: boolean) =>
     </div>
 );
 
+interface RansomwareProps {
+    ransomwareEnabled: boolean;
+    setRansomwareEnabled: (enabled: boolean) => void;
+}
 
-const Ransomware: React.FC = () => {
-    const [shieldEnabled, setShieldEnabled] = useState(true);
+const Ransomware: React.FC<RansomwareProps> = ({ ransomwareEnabled, setRansomwareEnabled }) => {
     const [folders, setFolders] = useState<ProtectedFolder[]>(initialProtectedFolders);
     const [trustedApps, setTrustedApps] = useState<string[]>(initialTrustedApps);
     const [blockedEvents, setBlockedEvents] = useState<RansomwareEvent[]>(initialBlockedEvents);
@@ -43,11 +45,11 @@ const Ransomware: React.FC = () => {
             <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50 mb-8 flex justify-between items-center">
                 <div>
                     <h2 className="text-xl font-bold text-gray-200 flex items-center"><RansomwareIcon className="w-6 h-6 mr-3"/>Ransomware Shield</h2>
-                    <p className={`text-sm ${shieldEnabled ? 'text-green-400' : 'text-red-400'}`}>
-                        {shieldEnabled ? 'Actively protecting your files from unauthorized changes.' : 'Shield is disabled! Your files are vulnerable to ransomware.'}
+                    <p className={`text-sm ${ransomwareEnabled ? 'text-green-400' : 'text-red-400'}`}>
+                        {ransomwareEnabled ? 'Actively protecting your files from unauthorized changes.' : 'Shield is disabled! Your files are vulnerable to ransomware.'}
                     </p>
                 </div>
-                <ToggleSwitch enabled={shieldEnabled} onChange={setShieldEnabled} />
+                <ToggleSwitch enabled={ransomwareEnabled} onChange={setRansomwareEnabled} />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">

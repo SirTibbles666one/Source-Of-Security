@@ -1,3 +1,5 @@
+import { View } from './components/Sidebar';
+
 // Antivirus
 export type ScanType = 'quick' | 'full' | 'custom' | 'smart';
 export type ScanStatus = 'idle' | 'scanning' | 'results' | 'complete_clean';
@@ -311,4 +313,13 @@ export interface AccountKey {
     dateGenerated: string;
     duration: KeyDuration;
     expiryDate: string; // ISO string or 'Never'
+}
+
+// Dashboard
+export interface SecurityIssue {
+    id: string;
+    title: string;
+    description: string;
+    view: View;
+    points: number;
 }

@@ -2,39 +2,33 @@
 
 This repository contains the source code for the Tibbles Source Of Security suite, a comprehensive security application built as a Progressive Web App and packaged with Electron for a native Windows experience.
 
-## How to Build the `.exe` Installer
+## How to Create Your Windows `.exe` Installer
 
-Follow these steps to package the application into a distributable `.exe` installer for Windows.
+The process has been simplified to be as reliable and easy as possible. Just follow these two steps.
 
-### Prerequisites (One-Time Setup)
+### Step 1: Install Node.js (One-Time Setup)
 
-1.  **Node.js:** You must have Node.js installed on your computer. If you don't, download and install the "LTS" version from [nodejs.org](https://nodejs.org/).
-2.  **GitHub Desktop:** For an easy, user-friendly experience, download and install [GitHub Desktop](https://desktop.github.com/).
+Your computer needs Node.js to run the build script. If you don't have it, please download and install the **"LTS" version** from the official website:
 
-### Build Steps
+- **[https://nodejs.org/](https://nodejs.org/)**
 
-1.  **Clone the Repository:**
-    *   Open GitHub Desktop.
-    *   Go to `File` > `Clone Repository`.
-    *   Select this repository from the list and choose a folder on your computer to save it in.
+During installation, ensure you are on the default settings. No special configuration is needed.
 
-2.  **Open the Project in Command Prompt:**
-    *   In GitHub Desktop, with this repository selected, go to the top menu and click `Repository` > `Open in Command Prompt`. This will open a command prompt window in the correct directory.
+### Step 2: Run the Build Script
 
-3.  **Install Dependencies:**
-    *   In the command prompt window, type the following command and press Enter. This will download Electron and the other tools needed for the build. This may take a few minutes.
-    ```bash
-    npm install
-    ```
+An automated script has been created to handle everything for you.
 
-4.  **Build the Installer:**
-    *   After the installation is complete, run the final build command:
-    ```bash
-    npm run dist
-    ```
+1.  **Save All Files:** Make sure all the project files (including this `README.md`, `package.json`, and `build.bat`) are in a single folder on your computer.
 
-5.  **Find Your Installer:**
-    *   Once the process is finished, look inside your project folder. You will find a new folder named `dist`.
-    *   Inside the `dist` folder is your installer: `Tibbles Source Of Security Setup.exe`.
+2.  **Double-Click the Script:** Find the file named `build.bat` and **double-click it** to run it.
 
-You can now run this file to install the suite on your computer or share it with others.
+A black command window will appear and show the progress. It will first install the necessary tools, then it will build the installer. This may take a few minutes.
+
+When it's finished, it will say **BUILD COMPLETE** and tell you where to find your completed `.exe` file.
+
+That's it! Your professional installer is ready to be used and distributed.
+
+### Troubleshooting
+
+- **"node is not recognized..." error:** This means Node.js is not installed correctly or wasn't added to your system's PATH. Please reinstall the LTS version from [nodejs.org](https://nodejs.org/) and make sure to restart your computer after installation.
+- **Errors during "Installing necessary tools...":** This is often due to a poor internet connection. Please check your connection and run `build.bat` again.

@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { FirewallRule } from '../types';
 
@@ -31,10 +30,13 @@ const ToggleSwitch: React.FC<{ enabled: boolean; onChange: (enabled: boolean) =>
   );
 };
 
+interface FirewallProps {
+    firewallEnabled: boolean;
+    setFirewallEnabled: (enabled: boolean) => void;
+}
 
-const Firewall: React.FC = () => {
+const Firewall: React.FC<FirewallProps> = ({ firewallEnabled, setFirewallEnabled }) => {
   const [rules, setRules] = useState<FirewallRule[]>(initialRules);
-  const [firewallEnabled, setFirewallEnabled] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'allowed' | 'blocked'>('all');
 
